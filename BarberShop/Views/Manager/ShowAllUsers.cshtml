@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BarberShop.Models.User>
+
+@{
+    ViewData["Title"] = "ShowAllUsers";
+}
+
+<h1>כל המשתמשים</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+     
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isActive)
+            </th>
+           
+            <th>
+                תפקיד
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.isActive)
+            </td>
+            @if(item is Barber)
+                {
+                    <td>
+                   ספר
+                </td>
+                }
+                 @if(item is Client)
+                {
+                    <td>
+                   לקוח
+                </td>
+                }
+                 @if(item is Manager)
+                {
+                    <td>
+                   מנהל
+                </td>
+                }
+                
+           
+                    @if (item is not Barber)
+                {
+                    <td> @Html.ActionLink("הפוך לספר", "MakeABarber", new { id=item.ID  })
+                     </td>
+                }
+                   
+        </tr>
+}
+    </tbody>
+</table>

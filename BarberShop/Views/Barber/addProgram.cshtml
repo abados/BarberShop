@@ -1,0 +1,132 @@
+﻿@model BarberShop.ViewModelsBarber.VMSchedualProgram
+
+@{
+    ViewData["Title"] = "addProgram";
+}
+
+<h1>addProgram</h1>
+
+<h4>VMSchedualProgram</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="addProgram">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+         
+                <input asp-for="BarberID" hidden="hidden" />
+                
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" onchange="change('sunday')" asp-for="workOnSunday" /> @Html.DisplayNameFor(model => model.workOnSunday)
+                </label>
+            </div>
+            <div id="sunday" style="display:none">
+            <div class="form-group">
+                <label asp-for="startSunday" class="control-label"></label>
+                <input asp-for="startSunday" class="form-control" />
+                <span asp-validation-for="startSunday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndSunday" class="control-label"></label>
+                <input asp-for="EndSunday" class="form-control" />
+                <span asp-validation-for="EndSunday" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" onchange="change('monday')" asp-for="workOnMonday" /> @Html.DisplayNameFor(model => model.workOnMonday)
+                </label>
+            </div>
+             <div id="monday" style="display:none">
+            <div class="form-group">
+                <label asp-for="startMonday" class="control-label"></label>
+                <input asp-for="startMonday" class="form-control" />
+                <span asp-validation-for="startMonday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndMonday" class="control-label"></label>
+                <input asp-for="EndMonday" class="form-control" />
+                <span asp-validation-for="EndMonday" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" onchange="change('tuesday')" asp-for="workOnTuesday" /> @Html.DisplayNameFor(model => model.workOnTuesday)
+                </label>
+            </div>
+             <div id="tuesday" style="display:none">
+            <div class="form-group">
+                <label asp-for="startTuesday" class="control-label"></label>
+                <input asp-for="startTuesday" class="form-control" />
+                <span asp-validation-for="startTuesday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndTuesday" class="control-label"></label>
+                <input asp-for="EndTuesday" class="form-control" />
+                <span asp-validation-for="EndTuesday" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" onchange="change('Wednesday')" asp-for="workOnWednesday" /> @Html.DisplayNameFor(model => model.workOnWednesday)
+                </label>
+            </div>
+            <div id="Wednesday" style="display:none">
+            <div class="form-group">
+                <label asp-for="startWednesday" class="control-label"></label>
+                <input asp-for="startWednesday" class="form-control" />
+                <span asp-validation-for="startWednesday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndWednesday" class="control-label"></label>
+                <input asp-for="EndWednesday" class="form-control" />
+                <span asp-validation-for="EndWednesday" class="text-danger"></span>
+            </div>
+             </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" onchange="change('Thursday')" asp-for="workOnThursday" /> @Html.DisplayNameFor(model => model.workOnThursday)
+                </label>
+            </div>
+            <div id="Thursday" style="display:none">
+            <div class="form-group">
+                <label asp-for="startThursday" class="control-label"></label>
+                <input asp-for="startThursday" class="form-control" />
+                <span asp-validation-for="startThursday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndThursday" class="control-label"></label>
+                <input asp-for="EndThursday" class="form-control" />
+                <span asp-validation-for="EndThursday" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" onchange="change('Friday')" asp-for="workOnFriday" /> @Html.DisplayNameFor(model => model.workOnFriday)
+                </label>
+            </div>
+            <div id="Friday" style="display:none">
+            <div class="form-group">
+                <label asp-for="startFriday" class="control-label"></label>
+                <input asp-for="startFriday" class="form-control" />
+                <span asp-validation-for="startFriday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndFriday" class="control-label"></label>
+                <input asp-for="EndFriday" class="form-control" />
+                <span asp-validation-for="EndFriday" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

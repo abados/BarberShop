@@ -1,0 +1,75 @@
+﻿@model BarberShop.ViewModelsManager.VMActions
+
+@{
+    ViewData["Title"] = "ViewAndCreateActions";
+}
+
+<h1>Actions</h1>
+
+
+@if(Model.HaircutActions.Count>0){
+<table class="table">
+    <thead>
+        <tr>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.HaircutActions.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HaircutActions.First().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HaircutActions.First().Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.HaircutActions) {
+        <tr>
+        
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                 @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddAction" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="action.Name" class="control-label"></label>
+                <input asp-for="action.Name" class="form-control" />
+                <span asp-validation-for="action.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="action.Description" class="control-label"></label>
+                <input asp-for="action.Description" class="form-control" />
+                <span asp-validation-for="action.Description" class="text-danger"></span>
+            </div>
+         <div class="form-group">
+                <label asp-for="action.Image" class="control-label"></label>
+                <input type="file" asp-for="action.Image" class="form-control" />
+                <span asp-validation-for="action.Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

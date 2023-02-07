@@ -1,0 +1,130 @@
+﻿@model BarberShop.ViewModelsManager.VMIsActiveBarber
+
+@{
+    ViewData["Title"] = "ViewBarbers";
+}
+
+<h1>הספרים שלי</h1>
+
+<p>
+    <a asp-action="CreateBarber">הוספת ספר חדש</a>
+</p>
+@if(Model.ActiveBarbers.Count>0)
+{
+   <h3>ספרים פעילים</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveBarbers.First().Image)
+            </th>
+           
+            <th>
+                    @Html.DisplayNameFor(model => model.ActiveBarbers.First().FullName)
+            </th>
+            <th>
+                    @Html.DisplayNameFor(model => model.ActiveBarbers.First().PhoneNumber)
+            </th>
+            <th>
+                    @Html.DisplayNameFor(model => model.ActiveBarbers.First().Email)
+            </th>
+            <th>
+                    @Html.DisplayNameFor(model => model.ActiveBarbers.First().isActive)
+            </th>
+           
+            <th>
+                הפוך ללא פעיל
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in Model.ActiveBarbers)
+            {
+        <tr>
+                    <td>
+                      
+                    </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isActive)
+            </td>
+            <td>
+                @Html.ActionLink("הפוך מצב","ChangeActive", new {id=item.ID})
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}
+
+@if (Model.NotActiveBarbers.Count > 0)
+{
+    <h3>ספרים לא פעילים </h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotActiveBarbers.First().Image)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.NotActiveBarbers.First().FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotActiveBarbers.First().PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotActiveBarbers.First().Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotActiveBarbers.First().isActive)
+                </th>
+
+                <th>
+                    הפוך ללא פעיל
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.NotActiveBarbers)
+            {
+                <tr>
+                    <td>
+                      
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isActive)
+                    </td>
+                    <td>
+                        @Html.ActionLink("הפוך מצב","ChangeActive", new {id=item.ID})
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@Html.ActionLink("רשימת משתמשים כללית","ShowAllUsers")
