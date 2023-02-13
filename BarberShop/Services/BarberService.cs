@@ -38,6 +38,8 @@ namespace BarberShop.Services
 
             Barber barber = DataLayer.Data.getBarbersAllIncludes.Find(b => b.RND == VM.BarberID);
             if (barber == null) return;
+            //הוספה לספר את כל הפגישות שלו
+            barber.AddWeeklyAppoitments(VM.startDate, VM.EndDate, Days);
         }
     }
     public class MyDay

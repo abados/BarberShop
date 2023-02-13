@@ -1,11 +1,10 @@
+C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\BarberShop.dll
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\appsettings.json
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\BarberShop.staticwebassets.runtime.json
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\BarberShop.exe
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\BarberShop.deps.json
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\BarberShop.runtimeconfig.json
-C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\BarberShop.dll
-C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\BarberShop.pdb
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\EntityFramework.SqlServer.dll
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\EntityFramework.dll
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\Humanizer.dll
@@ -251,4 +250,5 @@ C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\obj\Debug\
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\obj\Debug\net7.0\refint\BarberShop.dll
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\obj\Debug\net7.0\BarberShop.pdb
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\obj\Debug\net7.0\BarberShop.genruntimeconfig.cache
+C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\bin\Debug\net7.0\BarberShop.pdb
 C:\Users\User\source\Projects\uriel_Lessons\MVC\BarberShop\BarberShop\obj\Debug\net7.0\ref\BarberShop.dll

@@ -11,10 +11,10 @@ namespace BarberShop.ViewModelsBarber
         public int BarberID { get; set; }
 
         [Display(Name ="תאריך התחלה"), DataType(DataType.Date)]
-        public DateOnly startDate { get; set; }
+        public DateTime startDate { get; set; }
 
         [Display(Name = "תאריך סיום"), DataType(DataType.Date)]
-        public DateOnly EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [Display(Name = "עבודה ביום ראשון")]
         public bool workOnSunday { get; set; }

@@ -1,4 +1,5 @@
 ﻿using BarberShop.Models;
+using BarberShop.Services;
 using BarberShop.ViewModelsBarber;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,7 +43,6 @@ namespace BarberShop.Controllers
         public IActionResult MyActions(int? id)
         {
            
-
             Barber barber = DataLayer.Data.getBarbersAllIncludes.Find(b => b.ID == id);
 
             List<HaircutActionsPerBarber> myActions = barber.HaircutList;
@@ -68,11 +68,22 @@ namespace BarberShop.Controllers
             return View(vMSchedual);
         }
 
-        //[HttpPost, ValidateAntiForgeryToken]
-        //public IActionResult addProgram(VMSchedualProgram VM)
-        //{
-        //    if (VM == null) return RedirectToAction("index", "home");
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult addProgram(VMSchedualProgram VM)
+        {
+            if (VM == null) return RedirectToAction("index", "home");
+            new BarberService { VM = VM }.PlanProgram();
+            DataLayer.Data.SaveChanges();
+            return RedirectToAction("Calender", new { id =VM.BarberID });
+
+
+        }
+
+        public IActionResult Calender(int? id)
+        {
+            Barber barber = DataLayer.Data.getBarbersAllIncludes.Find(u => u.RND == id);
             
-        //}
+            return View(new VMCalender { Apoints = barber.Apointments});
+        }
     }
 }

@@ -1,0 +1,44 @@
+﻿@model BarberShop.ViewModelsBarber.VMCalender
+
+@{
+    ViewData["Title"] = "Calender";
+}
+
+<h1>@("לוח פגישות לימים הקרובים" + Model.Apoints.First().Haircut.Barber.FullName)</h1>
+
+<p>
+    <a asp-action="addProgram" asp-route-id="@Model.Apoints.First().Haircut.Barber.RND">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @for (int i = 0; i < Model.Apoints.Count; i++)
+            {
+                 <th>
+                    @Model.Apoints[i].DateTime.ToShortDateString()
+                </th>
+            }
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.DailyAppointment) {
+        <tr>
+            <td>
+                @for (int i = 0; i < item.Length; i++)
+                    {
+                        <div style="color:@item[i].ColorStatus">
+                        @i + ". " + @item[i].DateTime.ToLongTimeString() + " " + @item[i].Haircut.HaircutActions.Name + " " + @item[i].NameClient
+                        </div>
+                    }
+            </td>
+           
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -26,5 +26,11 @@ namespace BarberShop.Models
         [NotMapped,Display(Name = "פגישות")]
 
         public string StatusApoitment { get { if (Client == null) return "פנויה"; return "תפוסה"; } }
+
+        //פונקציה המציגה צבע סטטוס
+        [NotMapped, Display(Name = "צבע משבצת")]
+
+        public string ColorStatus { get { if (Client == null) return "Red"; return "Green"; } }
+
     }
 }

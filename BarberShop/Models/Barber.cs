@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BarberShop.Services;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Metrics;
 
 namespace BarberShop.Models
 {
@@ -57,52 +59,113 @@ namespace BarberShop.Models
             return addApoitment(haircutPerBarber, dateTime);
         }
 
+        //פונקציה המוסיפה פגישות לפי כמה ימים בשבוע
+        public void AddWeeklyAppoitments(DateTime start, DateTime end, List<MyDay> days)
+        {
+            int counter = 0;
+            for (DateTime i = start; i <= end; i=i.AddDays(1))
+            {
+                MyDay myDay = days.Find(d => d.Day == ((int)i.DayOfWeek));
+                if (myDay != null)
+                {
+                    // Add the appointment for this day
+
+                    //יצירת משתנה של תאריך ושעה של אותו יום התחלה וסוף 
+                    DateTime dayStart = new DateTime(i.Year, i.Month, i.Day, myDay.start.Hour, myDay.start.Minute, 0);
+                    DateTime dayEnd = new DateTime(i.Year, i.Month, i.Day, myDay.end.Hour, myDay.end.Minute, 0);
+
+                    //שליחה לפונקציה היומית להוספת הפגישה
+                    addDailyApointment(dayStart, dayEnd, counter, out counter);    
+                    
+                }
+
+            }
+        }
+
+        //פונקציה המחשבת את השארית ומודיעה היכן צריך להתחיל
+        
+
+        //החזרת מחזוריות
+
+        private int SumPlan
+        {
+            get
+            {
+                return Plan.Count;
+            }
+        }
+
+        //החזרת רשימה של כמות כל אחת מהפעולות
+
+        private List<HaircutActionsPerBarber> Plan 
+        {
+            get
+            {
+                List<HaircutActionsPerBarber> temp = new List<HaircutActionsPerBarber>();
+
+                foreach (HaircutActionsPerBarber haircutActionsPer in HaircutList)
+
+                {//לפי הכמות שהספר ציין לכל פעולה, מתווסף מקום ברשימה של התכנון
+
+                    for (int i = 0;i< haircutActionsPer.PercentFromTotalActions;i++)
+                    {
+                        temp.Add(haircutActionsPer);
+                    }
+                    
+                    
+                    
+                }
+                return temp;
+            }
+        
+        }
+
+
 
         //פונקציה המוסיפה פגישות יומיות
-        public void addDailyApointment(DateTime start, DateTime end, out int modulu)
+        public void addDailyApointment(DateTime start, DateTime end, int counter, out int modulu)
         {
-            List<int> plan = new List<int>();
-            DateTime time = start;
-         
-            
-            int counter = 0;
-            foreach (HaircutActionsPerBarber haircutActionsPer in HaircutList)
-                
-            {//לפי הכמות שהספר ציין לכל פעולה, מתווסף מקום ברשימה של התכנון
-                plan.Add(haircutActionsPer.PercentFromTotalActions);
-                counter += haircutActionsPer.PercentFromTotalActions;
+            //אם המונה מגיע 0 אז מעדכנים לפי מספר הפעולות של הספר
+            if (counter == 0) counter = SumPlan;
 
-            }
-            //ריצה על כל המקומות ברשימה
-            for(int i=0; i<plan.Count; i++)
+            //שעון יומי
+            DateTime currenTime = start;
+            int duration = 0;
+
+            do
             {
-                //ריצה לפי סוגי הפעולות בכמות של כל אחד מהם
-                for(int j = 0; j < plan[i];j++ )
-                {
-                    HaircutActionsPerBarber haircut = HaircutList[j];
-                    for (DateTime current = time; current < end.AddMinutes(haircut.ActionDuration); current = current.AddMinutes(haircut.ActionDuration)) 
-                    {
-                        time = current;
-                        //הוספת הפגישה בפועל
-                        addApoitment(haircut, current);
-                        counter--;
-                    }
-                }
-            }
+                //הוספת פגישה לפי סוג הפגישה בזמן
+                //חישוב כל הפגישות פחות השארית
+                addApoitment(Plan[SumPlan - counter], currenTime);
+                //הוספת הזמן לשעון היומי לפי משך הפגישה שנקבעה
+                currenTime=currenTime.AddMinutes(Plan[SumPlan - counter].ActionDuration);
+                
+                //הפחתת השארית
+                counter--;
+                //אם השארית הגיעה ל-0 : טעינה מחדש לפי סך הפגישות
+                if (counter == 0) counter = SumPlan;
+                //הוצאת זמן הפגישה הבאה למשתנה חיצוני
+                duration = Plan[SumPlan - counter ].ActionDuration;
+
+
+                //רץ על עוד יש זמן לפגישה נוספת
+            } while (currenTime < end.AddMinutes(-duration));
+
             modulu = counter;
+
         }
 
         //פונקציה המקבלת טווח תאריכים עם שעות של יום בשבוע
-        public void addRangePerDaily(DateTime start, DateTime end, int DayOfTheWeek, TimeOnly timeStart, TimeOnly timeEnd)
-        {
-            int result = 0;
-            for(DateTime day=start;day<=end;day=day.AddDays(1)) 
-            {
-                if((int)day.DayOfWeek== DayOfTheWeek) 
-                {
-                    addDailyApointment(new DateTime(day.Year, day.Month, day.Day, timeStart.Hour, timeStart.Minute, 0), new DateTime(day.Year, day.Month, day.Day, timeEnd.Hour, timeEnd.Minute, 0),out result);
-                }
-            }
-        }
+        //public void addRangePerDaily(DateTime start, DateTime end, int DayOfTheWeek, TimeOnly timeStart, TimeOnly timeEnd)
+        //{
+        //    int result = 0;
+        //    for(DateTime day=start;day<=end;day=day.AddDays(1)) 
+        //    {
+        //        if((int)day.DayOfWeek== DayOfTheWeek) 
+        //        {
+        //            addDailyApointment(new DateTime(day.Year, day.Month, day.Day, timeStart.Hour, timeStart.Minute, 0), new DateTime(day.Year, day.Month, day.Day, timeEnd.Hour, timeEnd.Minute, 0),out result);
+        //        }
+        //    }
+        //}
     }
 }
