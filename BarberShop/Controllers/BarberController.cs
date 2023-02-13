@@ -48,8 +48,6 @@ namespace BarberShop.Controllers
             List<HaircutActionsPerBarber> myActions = barber.HaircutList;
 
 
-
-
             return View(myActions);
         }
 
@@ -69,5 +67,12 @@ namespace BarberShop.Controllers
             };
             return View(vMSchedual);
         }
+
+        //[HttpPost, ValidateAntiForgeryToken]
+        //public IActionResult addProgram(VMSchedualProgram VM)
+        //{
+        //    if (VM == null) return RedirectToAction("index", "home");
+            
+        //}
     }
 }
